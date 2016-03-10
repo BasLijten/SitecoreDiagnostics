@@ -109,6 +109,7 @@
   <ItemGroup>
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="ApplicationInsights.xdt" />
     <None Include="Properties\PublishProfiles\applicationInsights.pubxml" />
     <None Include="Web.config" />
   </ItemGroup>

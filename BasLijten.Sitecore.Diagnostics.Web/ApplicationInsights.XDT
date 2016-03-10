@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <system.web xdt:Transform="InsertIfMissing">
+    <httpModules xdt:Transform="InsertIfMissing">
+      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web" />        
+    </httpModules>
+  </system.web>
+  <system.webServer xdt:Transform="InsertIfMissing">
+    <modules xdt:Transform="InsertIfMissing">
+      <remove name="ApplicationInsightsWebTracking" xdt:Transform="Insert" />
+      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web"
+        preCondition="managedHandler" xdt:Transform="Insert"/>
+    </modules>                                                    
+  </system.webServer>
+</configuration>
