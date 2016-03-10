@@ -58,7 +58,7 @@ namespace BasLijten.SC.Diagnostics.ApplicationInsights
 
             this.telemetryClient = new TelemetryClient();
             //TODO: in config
-            this.telemetryClient.Context.InstrumentationKey = "75c82881-b330-4c8a-8f2b-eb0ddaec75c3";
+            this.telemetryClient.Context.InstrumentationKey = Sitecore.Configuration.Settings.GetSetting("InstrumentationKey");
             //if (!string.IsNullOrEmpty(config.InstrumentationKey))
             //{
             //    this.telemetryClient.Context.InstrumentationKey = config.InstrumentationKey;
