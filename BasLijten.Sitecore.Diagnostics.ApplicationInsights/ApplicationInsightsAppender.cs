@@ -97,7 +97,9 @@ namespace BasLijten.SC.Diagnostics.ApplicationInsights
         {
             try
             {
-                ExceptionTelemetry exceptionTelemetry = new ExceptionTelemetry()
+                var exception = GetException(loggingEvent);
+                //ExceptionTelemetry exceptionTelemetry = new ExceptionTelemetry()
+                ExceptionTelemetry exceptionTelemetry = new ExceptionTelemetry(exception)
                 {
                     SeverityLevel = this.GetSeverityLevel(loggingEvent.Level)
                 };
@@ -108,6 +110,20 @@ namespace BasLijten.SC.Diagnostics.ApplicationInsights
             {
                 throw new LogException(ex.Message, ex);
             }
+        }
+
+        private static Exception GetException(LoggingEvent loggingEvent)
+        {
+            var exception = GetInstanceField(typeof(LoggingEvent), loggingEvent, "m_thrownException");
+            return exception as Exception;            
+        }
+
+        internal static object GetInstanceField(Type type, object instance, string fieldName)
+        {
+            BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                | BindingFlags.Static;
+            FieldInfo field = type.GetField(fieldName, bindFlags);
+            return field.GetValue(instance);
         }
 
         private void SendTrace(LoggingEvent loggingEvent)
